@@ -1,11 +1,16 @@
 package medbooking.resources;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.BeanUtils;
@@ -51,6 +56,27 @@ public class BookingResource {
 		
 		//prepare response
 			BeanUtils.copyProperties(bookdto, response);
+		return response;
+	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<BookingResponse> getBookingsPerPage(@DefaultValue("0") @QueryParam("start") int start,
+			@DefaultValue("1") @QueryParam("limit") int limit) {
+		List<BookingResponse> response= new ArrayList<BookingResponse>();
+		
+		//Retrieve all booking details per page
+			BookingService bookingService= new BookingServiceImpl();
+			List<Bookingdto> bookdtoList = bookingService.getBookings(start, limit);
+		
+		//prepare response
+			for(Bookingdto bookingdto: bookdtoList) {
+				BookingResponse eachresponse= new BookingResponse();
+				BeanUtils.copyProperties(bookingdto, eachresponse);
+				eachresponse.setHref("/booking/"+eachresponse.getBookingId());
+				response.add(eachresponse);
+			}
+			
 		return response;
 	}
 	

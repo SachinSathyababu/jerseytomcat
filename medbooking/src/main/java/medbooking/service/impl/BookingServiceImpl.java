@@ -1,5 +1,7 @@
 package medbooking.service.impl;
 
+import java.util.List;
+
 import medbooking.bookingrequest.exception.DuplicateBookingRequestException;
 import medbooking.bookingrequest.exception.InvalidBookingRequestException;
 import medbooking.bookingrequest.exception.NoBookingFoundException;
@@ -100,6 +102,22 @@ public class BookingServiceImpl implements BookingService {
 		}
 		
 		return bookingdto;
+	}
+
+	@Override
+	public List<Bookingdto> getBookings(int start, int limit) {
+		
+		List<Bookingdto> bookingdtolist;
+		try {
+			bookingDao.openConnection();
+			
+			bookingdtolist= bookingDao.getBookings(start, limit);
+		}
+		finally {
+			bookingDao.closeConnection();
+		}
+		
+		return bookingdtolist;
 	}
 
 }

@@ -5,7 +5,7 @@ public enum ErrorMessages {
 	INVALID_FIELD("Invalid field value. Please check documentation"),
 	ALREADY_EXIST("Booking already exists"),
 	INTERNAL_SERVER_ERROR("Internal Server error"),
-	NO_BOOKING_FOUND("Booking details not present");
+	NO_BOOKING_FOUND("Booking details not present for the given bookingId");
 	
 	private String errormessage;
 

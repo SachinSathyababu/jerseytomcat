@@ -1,8 +1,12 @@
 package medbooking.dao.impl;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -15,6 +19,7 @@ import medbooking.dao.entity.model.BookingEntity;
 import medbooking.dao.hibernate.utils.HibernateUtils;
 import medbooking.shared.dto.Bookingdto;
 import medbooking.shared.dto.Bookingdto.bookingStatus;
+
 
 public class Bookingdaohibernateimpl implements BookingDao{
 
@@ -75,10 +80,20 @@ public class Bookingdaohibernateimpl implements BookingDao{
 		
 		cquery.select(root);
 		
-		cquery.where(crb.equal(root.get("patientEmail"), bookingdto.getPatientEmail())).
-		where(crb.equal(root.get("doctorName"), bookingdto.getDoctorName())).
-		where(crb.equal(root.get("bookingDateTime"), bookingdto.getBookingDateTime())).
-		where(crb.equal(root.get("status"), bookingStatus.CONFIRMED));
+		Predicate predicateForPatientEmail
+		  = crb.equal(root.get("patientEmail"), bookingdto.getPatientEmail());
+		Predicate predicateForDoctorName
+		  = crb.equal(root.get("doctorName"), bookingdto.getDoctorName());
+		Predicate predicateForBookingDate
+		  = crb.equal(root.get("bookingDateTime"), bookingdto.getBookingDateTime());
+		Predicate predicateForBookingStatus
+		  = crb.equal(root.get("status"), bookingStatus.CONFIRMED);
+		
+		Predicate finalPredicate
+		  = crb.and(predicateForPatientEmail, predicateForDoctorName,
+				  predicateForBookingDate, predicateForBookingStatus);
+		
+		cquery.where(finalPredicate);
 		
 		Query<BookingEntity> query= session.createQuery(cquery);
 		
@@ -109,6 +124,33 @@ public class Bookingdaohibernateimpl implements BookingDao{
 		BeanUtils.copyProperties(bookingEntity, savedBooking);
 		
 		return savedBooking;
+	}
+
+	@Override
+	public List<Bookingdto> getBookings(int start, int limit) {
+
+		List<Bookingdto> bookdtolist = new ArrayList<>();
+		
+		CriteriaBuilder crb= session.getCriteriaBuilder();
+		
+		CriteriaQuery<BookingEntity> cquery= crb.createQuery(BookingEntity.class);
+		
+		Root<BookingEntity> root= cquery.from(BookingEntity.class);
+		
+		cquery.select(root);
+		
+		List<BookingEntity> bookEntityList= session.createQuery(cquery)
+				.setFirstResult(start)
+				.setMaxResults(limit)
+				.getResultList();
+		
+		for(BookingEntity bookingEntity: bookEntityList) {
+			Bookingdto bookingdto= new Bookingdto();
+			BeanUtils.copyProperties(bookingEntity, bookingdto);
+			bookdtolist.add(bookingdto);
+		}
+		
+		return bookdtolist;
 	}
 
 }
