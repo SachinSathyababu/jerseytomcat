@@ -7,6 +7,7 @@ import medbooking.dao.BookingDao;
 import medbooking.dao.impl.Bookingdaohibernateimpl;
 import medbooking.service.BookingService;
 import medbooking.shared.dto.Bookingdto;
+import medbooking.shared.dto.Bookingdto.bookingStatus;
 import medbooking.ui.model.response.ErrorMessages;
 
 public class BookingServiceImpl implements BookingService {
@@ -30,6 +31,7 @@ public class BookingServiceImpl implements BookingService {
 		
 		//generate booking id
 		bookdto.setBookingId(utils.generateBookingId(8));
+		bookdto.setStatus(bookingStatus.CONFIRMED);
 		
 		//record data in database
 		bookeddto= saveBooking(bookdto);

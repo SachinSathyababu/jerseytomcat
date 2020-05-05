@@ -3,6 +3,9 @@ package medbooking.shared.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 
 public class Bookingdto implements Serializable{
 
@@ -21,6 +24,7 @@ public class Bookingdto implements Serializable{
 	private String hospitalName;
 	
 	public enum bookingStatus {CONFIRMED,CANCELLED};
+	
 	private bookingStatus status;
 	public long getId() {
 		return id;

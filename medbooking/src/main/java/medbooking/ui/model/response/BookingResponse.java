@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import medbooking.shared.dto.Bookingdto.bookingStatus;
+
 @XmlRootElement
 public class BookingResponse {
 
@@ -17,7 +19,6 @@ public class BookingResponse {
 	private String hospitalName;
 	private String href;
 	
-	public enum bookingStatus {CONFIRMED,CANCELLED};
 	private bookingStatus status;
 	
 	public String getBookingId() {

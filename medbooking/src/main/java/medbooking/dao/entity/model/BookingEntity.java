@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import medbooking.shared.dto.Bookingdto.bookingStatus;
 
 @Entity(name="Bookings")
 public class BookingEntity implements Serializable{
@@ -27,6 +31,15 @@ public class BookingEntity implements Serializable{
 	private String bookingSummay;
 	private String hospitalName;
 	
+	@Enumerated(EnumType.STRING)
+	private bookingStatus status;
+	
+	public bookingStatus getStatus() {
+		return status;
+	}
+	public void setStatus(bookingStatus status) {
+		this.status = status;
+	}
 	public long getId() {
 		return id;
 	}

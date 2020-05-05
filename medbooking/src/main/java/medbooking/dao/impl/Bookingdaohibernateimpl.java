@@ -62,7 +62,7 @@ public class Bookingdaohibernateimpl implements BookingDao{
 	@Override
 	public Bookingdto checkDuplicateBooking(Bookingdto bookingdto) {
 		
-		Bookingdto duplicatebooking = new Bookingdto();
+		Bookingdto duplicatebooking=null;
 		
 		CriteriaBuilder crb= session.getCriteriaBuilder();
 		
@@ -81,7 +81,10 @@ public class Bookingdaohibernateimpl implements BookingDao{
 		
 		BookingEntity bookingEntity = query.uniqueResult();
 		
-		BeanUtils.copyProperties(bookingEntity, bookingdto);
+		if(bookingEntity!=null) {
+		duplicatebooking = new Bookingdto();
+		BeanUtils.copyProperties(bookingEntity, duplicatebooking);
+		}
 		
 		return duplicatebooking;
 		

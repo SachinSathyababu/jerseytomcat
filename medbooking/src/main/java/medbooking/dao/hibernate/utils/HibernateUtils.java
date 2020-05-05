@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtils {
 	
-	private static SessionFactory sessionFactory;
+	private static final SessionFactory sessionFactory;
 	
 	static {
 		Configuration conf= new Configuration();
@@ -14,7 +14,7 @@ public class HibernateUtils {
 	
 	
 	try {
-		sessionFactory= new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+		sessionFactory= new Configuration().configure().buildSessionFactory();
 	}catch(HibernateException e) {
 		System.out.println("Initial Session Factory Creation failed : "+e);
 		throw new ExceptionInInitializerError(e);
