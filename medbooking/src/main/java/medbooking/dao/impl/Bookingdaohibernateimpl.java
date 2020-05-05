@@ -31,7 +31,7 @@ public class Bookingdaohibernateimpl implements BookingDao{
 	@Override
 	public Bookingdto getBookingById(String bookingId) {
 		
-		Bookingdto bookingdto = new Bookingdto();
+		Bookingdto bookingdto = null;
 		
 		CriteriaBuilder crb= session.getCriteriaBuilder();
 		
@@ -47,7 +47,10 @@ public class Bookingdaohibernateimpl implements BookingDao{
 		
 		BookingEntity bookingEntity = query.uniqueResult();
 		
-		BeanUtils.copyProperties(bookingEntity, bookingdto);
+		if(bookingEntity!=null) {
+			bookingdto = new Bookingdto();
+			BeanUtils.copyProperties(bookingEntity, bookingdto);
+		}
 		
 		return bookingdto;
 		

@@ -2,6 +2,7 @@ package medbooking.service.impl;
 
 import medbooking.bookingrequest.exception.DuplicateBookingRequestException;
 import medbooking.bookingrequest.exception.InvalidBookingRequestException;
+import medbooking.bookingrequest.exception.NoBookingFoundException;
 import medbooking.bookingrequest.utils.BookingRequestUtils;
 import medbooking.dao.BookingDao;
 import medbooking.dao.impl.Bookingdaohibernateimpl;
@@ -68,6 +69,37 @@ public class BookingServiceImpl implements BookingService {
 		}
 		
 		return duplicateBooking;
+	}
+
+	@Override
+	public Bookingdto getBookingByBookingId(String bookingId) {
+
+		/*if(bookingId==null || bookingId.isEmpty()) {
+			throw new InvalidBookingRequestException("BookingId "+ErrorMessages.INVALID_FIELD.getErrormessage());
+		}
+		*/
+		Bookingdto bookingdto = getBooking(bookingId);
+		
+		if(bookingdto==null) {
+			throw new NoBookingFoundException(ErrorMessages.NO_BOOKING_FOUND.getErrormessage());
+		}
+		
+		return bookingdto;
+	}
+
+	private Bookingdto getBooking(String bookingId) {
+
+		Bookingdto bookingdto;
+		try {
+			bookingDao.openConnection();
+			
+			bookingdto= bookingDao.getBookingById(bookingId);
+		}
+		finally {
+			bookingDao.closeConnection();
+		}
+		
+		return bookingdto;
 	}
 
 }
