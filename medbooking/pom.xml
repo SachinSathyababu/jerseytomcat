@@ -88,13 +88,9 @@
 
     </dependencies>
 
-<<<<<<< HEAD
 
 <build>
 <finalName>medbooking</finalName>
-=======
- <build>
->>>>>>> dad1e39b411626716d58f93ce6ceb426a7551697
   <plugins>
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
