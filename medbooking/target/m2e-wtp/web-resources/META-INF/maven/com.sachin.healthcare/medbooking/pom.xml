@@ -89,7 +89,14 @@
     </dependencies>
 
 
-<build>
+
+<!--  <build>
+<finalName>medbooking</finalName>
+</build>  -->
+
+
+ 
+ <build>
 <finalName>medbooking</finalName>
   <plugins>
     <plugin>
@@ -102,4 +109,5 @@
     </plugin>
   </plugins>
 </build>
+ 
 </project>
