@@ -3,9 +3,6 @@ package medbooking.shared.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 
 public class Bookingdto implements Serializable{
 
