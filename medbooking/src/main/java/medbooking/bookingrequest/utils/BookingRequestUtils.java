@@ -6,6 +6,7 @@ import java.util.Random;
 
 import medbooking.bookingrequest.exception.InvalidBookingRequestException;
 import medbooking.shared.dto.Bookingdto;
+import medbooking.shared.dto.Userdto;
 import medbooking.ui.model.response.ErrorMessages;
 
 public class BookingRequestUtils {
@@ -35,6 +36,14 @@ public class BookingRequestUtils {
 				bookdto.getBookingSummay()==null || bookdto.getBookingSummay().isEmpty() ||
 				bookdto.getHospitalName()==null || bookdto.getHospitalName().isEmpty() ||
 				bookdto.getBookingDateTime().isBefore(LocalDate.now().plusDays(3)) ) {
+			throw new InvalidBookingRequestException(ErrorMessages.INVALID_FIELD.getErrormessage());
+		}
+	}
+
+	public void validateAuthenticateUserRequest(Userdto userdto) {
+		
+		if(userdto.getUsername()==null || userdto.getUsername().isEmpty() ||
+				userdto.getPassword()==null || userdto.getPassword().isEmpty() ) {
 			throw new InvalidBookingRequestException(ErrorMessages.INVALID_FIELD.getErrormessage());
 		}
 	}

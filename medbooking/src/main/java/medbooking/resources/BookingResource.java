@@ -3,6 +3,7 @@ package medbooking.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -23,7 +24,8 @@ import medbooking.ui.model.response.BookingResponse;
 
 @Path("/booking")
 public class BookingResource {
-
+	
+	@RolesAllowed(value = { "admin", "user" })
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -44,6 +46,7 @@ public class BookingResource {
 		return response;
 	}
 	
+	@RolesAllowed(value = { "admin", "user" })
 	@GET
 	@Path("/{bookingId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -59,6 +62,7 @@ public class BookingResource {
 		return response;
 	}
 	
+	@RolesAllowed(value = { "admin" })
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<BookingResponse> getBookingsPerPage(@DefaultValue("0") @QueryParam("start") int start,

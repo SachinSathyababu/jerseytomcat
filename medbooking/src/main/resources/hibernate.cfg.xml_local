@@ -58,6 +58,6 @@ Contributor(s):
         
         
         <mapping class="medbooking.dao.entity.model.BookingEntity"></mapping>
-        
+        <mapping class="medbooking.dao.entity.model.UserEntity"></mapping>
     </session-factory>
 </hibernate-configuration>

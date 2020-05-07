@@ -70,6 +70,14 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>5.2.12.Final</version>
         </dependency>
+
+	<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+	<dependency>
+		<groupId>io.jsonwebtoken</groupId>
+		<artifactId>jjwt</artifactId>
+		<version>0.6.0</version>
+	</dependency>
+        
         
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
         <dependency>
@@ -90,13 +98,13 @@
 
 
 
-<!--  <build>
+<!-- <build>
 <finalName>medbooking</finalName>
-</build>  -->
+</build> --> 
 
 
  
- <build>
+<build>
 <finalName>medbooking</finalName>
   <plugins>
     <plugin>
