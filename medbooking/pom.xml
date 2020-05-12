@@ -8,20 +8,13 @@
   <name>medbooking Maven Webapp</name>
   <url>http://maven.apache.org</url>
  <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    
+        
         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.bundles/jaxrs-ri -->
         <dependency>
             <groupId>org.glassfish.jersey.bundles</groupId>
             <artifactId>jaxrs-ri</artifactId>
             <version>2.25</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-moxy -->
         <dependency>
@@ -59,11 +52,13 @@
             <artifactId>spring-beans</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
+        
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.1.Final</version>
         </dependency>
+        
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -72,12 +67,11 @@
         </dependency>
 
 	<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
-	<dependency>
-		<groupId>io.jsonwebtoken</groupId>
-		<artifactId>jjwt</artifactId>
-		<version>0.6.0</version>
-	</dependency>
-        
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.6.0</version>
+		</dependency>      
         
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
         <dependency>
@@ -93,18 +87,33 @@
             <version>3.7</version>
         </dependency>
 
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+			<dependency>
+			    <groupId>org.mockito</groupId>
+			    <artifactId>mockito-all</artifactId>
+			    <version>1.8.4</version>
+			    <scope>test</scope>
+			</dependency>
+			
     </dependencies>
 
 
 
-<!-- <build>
+<build>
 <finalName>medbooking</finalName>
-</build> --> 
+</build> 
 
 
  
-<build>
+<!-- <build>
 <finalName>medbooking</finalName>
   <plugins>
     <plugin>
@@ -116,6 +125,6 @@
       </configuration>
     </plugin>
   </plugins>
-</build>
+</build> -->
  
 </project>
