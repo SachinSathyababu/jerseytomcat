@@ -74,12 +74,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public Bookingdto getBookingByBookingId(String bookingId) {
+	public Bookingdto getBookingByBookingId(String bookingId) throws NoBookingFoundException{
 
-		/*if(bookingId==null || bookingId.isEmpty()) {
-			throw new InvalidBookingRequestException("BookingId "+ErrorMessages.INVALID_FIELD.getErrormessage());
-		}
-		*/
 		Bookingdto bookingdto = getBooking(bookingId);
 		
 		if(bookingdto==null) {
