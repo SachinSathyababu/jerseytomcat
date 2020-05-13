@@ -15,15 +15,20 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import medbooking.service.BookingService;
-import medbooking.service.impl.BookingServiceImpl;
 import medbooking.shared.dto.Bookingdto;
 import medbooking.ui.model.request.BookingRequest;
 import medbooking.ui.model.response.BookingResponse;
 
 @Path("/booking")
 public class BookingResource {
+	
+	@Autowired
+	BookingService bookingService;
+
+	//BookingService bookingService= new BookingServiceImpl();
 	
 	@RolesAllowed(value = { "admin", "user" })
 	@POST
@@ -37,7 +42,7 @@ public class BookingResource {
 		BeanUtils.copyProperties(bookingRequest, bookdto);
 		
 		//create booking
-		BookingService bookingService= new BookingServiceImpl();
+		//BookingService bookingService= new BookingServiceImpl();
 		Bookingdto createdbookdto = bookingService.createBooking(bookdto);
 		
 		//prepare response
@@ -54,7 +59,7 @@ public class BookingResource {
 		BookingResponse response= new BookingResponse();
 		
 		//Rertrieve booking details
-			BookingService bookingService= new BookingServiceImpl();
+			//BookingService bookingService= new BookingServiceImpl();
 			Bookingdto bookdto = bookingService.getBookingByBookingId(bookingId);
 		
 		//prepare response
@@ -70,7 +75,7 @@ public class BookingResource {
 		List<BookingResponse> response= new ArrayList<BookingResponse>();
 		
 		//Retrieve all booking details per page
-			BookingService bookingService= new BookingServiceImpl();
+			//BookingService bookingService= new BookingServiceImpl();
 			List<Bookingdto> bookdtoList = bookingService.getBookings(start, limit);
 		
 		//prepare response

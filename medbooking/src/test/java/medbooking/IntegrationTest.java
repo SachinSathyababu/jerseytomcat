@@ -1,4 +1,4 @@
-package medbooking.dao.impl;
+package medbooking;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,69 +9,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import medbooking.dao.BookingDao;
-import medbooking.shared.dto.Bookingdto;
 import medbooking.ui.model.response.BookingResponse;
 
-@RunWith(MockitoJUnitRunner.class)
-public class Bookingdaohibernateimpltest{
-	
-	@Mock
-	BookingDao impl;
+public class IntegrationTest {
 	
 	@Test
-	public void simpleTestsucess() {
-		
-		
-		
-	}
-	
-	
-	@Test
-	public void simpleTestfailure() {
-		
-		//fail("not yet implemented");
-		
-	}
-	
-	@Test
-	public void sumTest() {
-		
-		Bookingdaohibernateimpl impl= new Bookingdaohibernateimpl();
-		int actualResult= impl.sum(1, 3);
-		
-		assertEquals(4, actualResult);
-		
-	}
-	
-	@Test
-	public void getBookingByIdTest() {
-		
-		Bookingdto book= new Bookingdto();
-		book.setDoctorName("Anitha");
-		Mockito.when(impl.getBookingById("irz9wYHR")).thenReturn(book);
-		
-		String actual= impl.getBookingById("irz9wYHR").getDoctorName();
-		assertEquals("Anitha", actual);
-		
-		
-	}
-	
-	
-	/*@Test
 	public void  testIntegartionforGET() throws IOException {
 		URL url = new URL("http://localhost:8080/medbooking/api/booking/irz9wYHR" );
 		String response= new String();
 		HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
-		urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTI3MjM5Miwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkyNzU5OTJ9.JUWvJnuzzEHt2-Xqj2SHwHKOYNz_pdtBthl3uoBUrgA");
+		urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTM2MTg0OSwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkzNjU0NDl9.jnC_mrWc1jpBSnptb6XBgWQ18TOWiHijPnyfzQ8hThs");
 		urlConnect.setRequestProperty("Accept", "application/json");
 		
 		InputStream is = urlConnect.getInputStream();
@@ -101,7 +52,7 @@ public class Bookingdaohibernateimpltest{
 		String response= new String();
 		HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
 		urlConnect.setRequestMethod("POST");
-		urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTI3MjM5Miwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkyNzU5OTJ9.JUWvJnuzzEHt2-Xqj2SHwHKOYNz_pdtBthl3uoBUrgA");
+		urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTM2MTg0OSwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkzNjU0NDl9.jnC_mrWc1jpBSnptb6XBgWQ18TOWiHijPnyfzQ8hThs");
 		urlConnect.setRequestProperty("Content-Type", "application/json");
 		urlConnect.setRequestProperty("Accept", "application/json");
 		urlConnect.setDoOutput(true);
@@ -141,6 +92,6 @@ public class Bookingdaohibernateimpltest{
 	        is.close();
 	    }
 		
-	}*/
+	}
 
 }

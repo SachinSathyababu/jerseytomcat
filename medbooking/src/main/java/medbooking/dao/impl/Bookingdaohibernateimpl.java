@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
 import medbooking.dao.BookingDao;
 import medbooking.dao.entity.model.BookingEntity;
@@ -20,7 +21,7 @@ import medbooking.dao.hibernate.utils.HibernateUtils;
 import medbooking.shared.dto.Bookingdto;
 import medbooking.shared.dto.Bookingdto.bookingStatus;
 
-
+@Component
 public class Bookingdaohibernateimpl implements BookingDao{
 
 	Session session;

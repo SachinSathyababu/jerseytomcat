@@ -8,11 +8,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import medbooking.security.oauth.authenticateusermodel.AuthenticateUser;
 import medbooking.security.oauth.jwt.JWT;
 import medbooking.service.UserService;
-import medbooking.service.impl.UserServiceImpl;
 import medbooking.shared.dto.Userdto;
 import medbooking.ui.model.response.ErrorMessages;
 import medbooking.ui.model.response.ErrorResponse;
@@ -22,12 +22,13 @@ public class AuthenticateResource {
 	
 	private JWT jwt = new JWT();
 	
+	@Autowired
+	UserService userService;
+	
 	@PermitAll
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response GetToken(AuthenticateUser user) {
-		
-		UserService userService= new UserServiceImpl();
 		
 		Userdto userdto = new Userdto();
 		BeanUtils.copyProperties(user, userdto);

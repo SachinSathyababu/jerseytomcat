@@ -7,7 +7,6 @@ import medbooking.bookingrequest.exception.InvalidBookingRequestException;
 import medbooking.bookingrequest.exception.NoBookingFoundException;
 import medbooking.bookingrequest.utils.BookingRequestUtils;
 import medbooking.dao.BookingDao;
-import medbooking.dao.impl.Bookingdaohibernateimpl;
 import medbooking.service.BookingService;
 import medbooking.shared.dto.Bookingdto;
 import medbooking.shared.dto.Bookingdto.bookingStatus;
@@ -16,8 +15,14 @@ import medbooking.ui.model.response.ErrorMessages;
 public class BookingServiceImpl implements BookingService {
 
 	BookingRequestUtils utils= new BookingRequestUtils();
-	BookingDao bookingDao = new Bookingdaohibernateimpl();
 	
+	private BookingDao bookingDao;
+	
+	public BookingServiceImpl(BookingDao bookingDao) {
+		super();
+		this.bookingDao = bookingDao;
+	}
+
 	@Override
 	public Bookingdto createBooking(Bookingdto bookdto) throws InvalidBookingRequestException {
 		Bookingdto bookeddto = new Bookingdto();

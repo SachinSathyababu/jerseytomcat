@@ -11,12 +11,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.BeanUtils;
 
+
 import medbooking.dao.UserDao;
 import medbooking.dao.entity.model.UserEntity;
 import medbooking.dao.hibernate.utils.HibernateUtils;
 import medbooking.shared.dto.Userdto;
 
-
+//@Component
 public class Userdaohibernateimpl implements UserDao{
 
 	Session session;
